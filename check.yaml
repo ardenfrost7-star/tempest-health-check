@@ -1,9 +1,9 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: health-v3
+  name: health-v4
 spec:
-  ttlSecondsAfterFinished: 60
+  ttlSecondsAfterFinished: 600
   template:
     spec:
       serviceAccountName: argocd-server
