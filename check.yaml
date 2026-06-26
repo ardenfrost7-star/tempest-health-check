@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: health-v1
+  name: health-v2
 spec:
   ttlSecondsAfterFinished: 60
   template:
